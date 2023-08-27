@@ -5,13 +5,13 @@ const groupSchema = new Schema({
         type: String,
         require: true, 
     },
-    creator: { type: Schema.Types.ObjectId, ref: 'user' },
-    admins: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+    creator: {type: Number, required: true},
+    admins: [{ type: Number, required: true}],
     marketPlace:{
         type: Boolean,
         default: false,
     }, 
-    members: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+    members: [{type: Number}],
 })
 
 module.exports = model('group', groupSchema);

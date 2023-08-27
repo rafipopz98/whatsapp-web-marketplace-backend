@@ -2,7 +2,7 @@ const GroupModel = require("../Models/group")
 class GroupRepository {
     async CreateGroup({creator, name, marketPlace, members}){
         try{   
-            console.log(members);
+            console.log(members, creator);
             members.push(creator);
             const admins = [creator]
             const group = new GroupModel({creator, name, marketPlace, members, admins});
@@ -10,6 +10,17 @@ class GroupRepository {
             return {success: true, data: group, error: null};
         }catch(e){
             console.log("Error at Group Repository layer",e);
+            return {success: false, data: null, error: e};
+        }
+    }
+
+    async GetGroupWithPhoneNumber({phoneNumber}) {
+        try{
+            const groups = await GroupModel.find({members: phoneNumber});
+            console.log("Groups:", groups);
+            return {success: true, data: groups, error: null}
+        }catch(e) {
+            console.log("Error at Group Repository layer", e);
             return {success: false, data: null, error: e};
         }
     }

@@ -13,6 +13,7 @@ const productSchema = new Schema({
         type: Number,
         required: true,
     },
+    image: String,
     marketPlaceID: {
         type: Schema.Types.ObjectId,
         ref: 'marketplace',
@@ -22,7 +23,8 @@ const productSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: 'group',
         required: true,
-    }
+    },
+    seller: { type: Schema.Types.ObjectId, ref: 'user' }
 
 })
 

@@ -5,10 +5,7 @@ const marketPlaceSchema = new Schema({
         type: String,
         required: true
     },
-    creator: {
-        type: String,
-        required: true,
-    },
+    creator: {type: Schema.Types.ObjectId, ref: 'user',  required: true },
     groupID: {
         type: String,
         required: true,

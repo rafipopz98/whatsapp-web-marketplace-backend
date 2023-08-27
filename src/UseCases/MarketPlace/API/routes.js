@@ -20,6 +20,7 @@ router.post("/create", async(req, res)=>{
 router.post('/add-products', async(req, res)=>{
     try{
         const {products, group_id, marketPlace_id} = req.body;
+        // console.log("req.body", req.body)
         const data = await service.AddingProducts({products, group_id, marketPlace_id});
         console.log("final data", data)
         if(data.success) return res.status(200).json(data);
@@ -30,10 +31,11 @@ router.post('/add-products', async(req, res)=>{
     }
 })
 
+
 router.get("/:id", async (req, res) => {
     try {
         const {id} = req.params;
-        const data = await service.GetMarketPlace({id});
+        const data = await service.GetMarketPlaceWithGroupID({id});
         if(data.success) return res.status(200).json(data);
         return res.status(500).json(data);
     }catch(e){

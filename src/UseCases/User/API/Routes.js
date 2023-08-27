@@ -10,9 +10,12 @@ router.post("/signup", async (req, res)=>{
     try{
         const {phoneNumber, password} = req.body;
         const data = await service.SignUp({phoneNumber, password});
-        if(data.created)
+        if(data.success){
+            console.log("success", data);
             return res.status(200).json(data);
-        res.status(422).json({data});
+        }
+        console.log("failure", data);
+        return res.status(422).json({data});
     }catch(e){
         console.log("Error at api layer", e);
         return res.status(422).json({message: "Username already exists"})

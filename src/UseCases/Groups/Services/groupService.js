@@ -13,6 +13,16 @@ class GroupService {
             return {success: false, data: null, error: e};
         }
     }
+
+    async GetGroupWithPhoneNumber({phoneNumber}) {
+        try{
+            return this.GR.GetGroupWithPhoneNumber({phoneNumber});
+        }catch(e) {
+            console.log("Error at Group Service Layer", e);
+            return {success: false, data: null, error: e}
+        }
+    }
+
     async MakeAdmins({group_id, admins}) {
         try {
             return this.GR.makeAdmins({group_id,  admins})

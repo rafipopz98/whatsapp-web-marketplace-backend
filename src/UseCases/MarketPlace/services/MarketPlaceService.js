@@ -6,9 +6,9 @@ class MarketPlaceService {
         this.productRepo = PR;
     }
 
-    async GetMarketPlace({id}) {
+    async GetMarketPlaceWithGroupID({id}) {
         try{
-            return this.marketPlaceRepo.GetMarketPlace({id});
+            return this.marketPlaceRepo.GetMarketPlaceWithGroupID({id});
         }catch(e) {
             console.log("Error at Market Place Repository layer", e);
             return {success: false, data: null, error: e};
@@ -27,6 +27,7 @@ class MarketPlaceService {
 
     async AddingProducts({products, group_id, marketPlace_id}){
         try {
+            console.log("inside marketplaceservice, adding products", {products, group_id, marketPlace_id})
             const productData = await this.productRepo.addMultipleProducts({products, group_id, marketPlace_id});
             let marketPlaceData;
             if( productData.success){

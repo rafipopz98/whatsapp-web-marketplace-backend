@@ -5,7 +5,7 @@ const {ConnectDB} = require("./Infra")
 
 const cors = require('cors');
 
-const {UserRoutes, MarketPlaceRoutes, GroupRoutes} = require("./UseCases/index")
+const {UserRoutes, MarketPlaceRoutes, GroupRoutes, OrderRoutes} = require("./UseCases/index")
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -23,5 +23,6 @@ ConnectDB(DB_URL);
 app.use("/user", UserRoutes)
 app.use("/group", GroupRoutes)
 app.use("/market-place", MarketPlaceRoutes)
+app.use("/order", OrderRoutes)
 
 app.listen(PORT, ()=>console.log(`app serving at port ${PORT}`));
